@@ -112,24 +112,26 @@ int main()
 
 	//int* m = new int [n];
 
+	for (int j = 0; j < 100;j++)
+	{
+		for (int i = 0; i < m.size(); i++) m[i] = rand();
 
+		t1 = clock();
 
-	for (int i = 0; i < m.size(); i++) m[i] = rand();
+		//stats rez = ins_sort(m);	
+		  //stats rez = shell_sort_arr(m, n);
 
-	t1 = clock();
+		sort(m.begin(), m.end());
+		t2 = clock();
 
-	//stats rez = ins_sort(m);	
-	  //stats rez = shell_sort_arr(m, n);
+		cout << t2 - t1 << endl;
 
-	sort(m.begin(), m.end());
-	t2 = clock();
+		//for (int x : m) cout << x << " ";
+		//cout << endl << endl;
 
-	cout << t2 - t1 << endl;
-
-	//for (int x : m) cout << x << " ";
-	//cout << endl << endl;
-
-	//cout << rez.comparison_count << endl;
-	//cout << rez.copy_count       << endl;
+		//cout << rez.comparison_count << endl;
+		//cout << rez.copy_count       << endl;
+	}
+	
 }
 
