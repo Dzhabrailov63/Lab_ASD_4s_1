@@ -101,37 +101,66 @@ stats shell_sort_arr(int* m, int n)
 
 int main()
 {
-	//vector<int> m = { 1, 1, 7, 3, 5, 4, 3, 4, 6, 9 };
-	//vector<int> m = {0, 1,2,3,4,5,6,7,8,9 };
-	//vector<int> m = {9, 8, 7 ,6, 5, 4, 3, 2, 1 , 0 };
-	int t1, t2;
+	stats sum_rez1, sum_rez2;
 
-	vector<int> m(100000);
-
-	//int n = 100000;
-
-	//int* m = new int [n];
-
-	for (int j = 0; j < 100;j++)
+	for (int cur_n = 1000; cur_n <= 10000; cur_n += 1000)
 	{
-		for (int i = 0; i < m.size(); i++) m[i] = rand();
+		vector<int> m1(cur_n);
+		vector<int> m2(cur_n);
 
-		t1 = clock();
+		sum_rez1.comparison_count = 0;
+		sum_rez1.copy_count = 0;
 
-		//stats rez = ins_sort(m);	
-		  //stats rez = shell_sort_arr(m, n);
+		sum_rez2.comparison_count = 0;
+		sum_rez2.copy_count = 0;
 
-		sort(m.begin(), m.end());
-		t2 = clock();
+		for (int j = 0; j < 10; j++)
+		{
+			for (int i = 0; i < cur_n; i++)
+			{
+				m1[i] = rand();
+				m2[i] = m1[i];
+			}
 
-		cout << t2 - t1 << endl;
+			stats rez1 = ins_sort(m1);
+			sum_rez1.comparison_count += rez1.comparison_count;
+			sum_rez1.copy_count += rez1.copy_count;
 
-		//for (int x : m) cout << x << " ";
-		//cout << endl << endl;
+			stats rez2 = shell_sort(m2);
+			//cout << rez2.comparison_count << " " << rez2.comparison_count << endl;
+			sum_rez2.comparison_count += rez2.comparison_count;
+			sum_rez2.copy_count += rez2.copy_count;
+		}
 
-		//cout << rez.comparison_count << endl;
-		//cout << rez.copy_count       << endl;
+		cout << cur_n << endl;
+		cout << "ins_sort(m1)" << endl;
+		cout << "\t" << sum_rez1.comparison_count / 10.0f << endl;
+		cout << "\t" << sum_rez1.copy_count / 10.0f << endl;
+
+		cout << "shell_sort(m2)" << endl;
+		cout << "\t" << sum_rez2.comparison_count / 10.0f << endl;
+		cout << "\t" << sum_rez2.copy_count / 10.0f << endl;
 	}
 	
+	////vector<int> m = { 1, 1, 7, 3, 5, 4, 3, 4, 6, 9 };
+	////vector<int> m = {0, 1,2,3,4,5,6,7,8,9 };
+	////vector<int> m = {9, 8, 7 ,6, 5, 4, 3, 2, 1 , 0 };
+	//int t1, t2;
+
+	//vector<int> m(100000);
+
+	////int n = 100000;
+
+	////int* m = new int [n];
+
+
+
+	//for (int i = 0; i < m.size(); i++) m[i] = rand();
+
+	//t1 = clock();
+
+	////stats rez = ins_sort(m);	
+	//  //stats rez = shell_sort_arr(m, n);
+	//
 }
 
